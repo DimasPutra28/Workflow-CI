@@ -36,6 +36,7 @@ jobs:
 
             - name: Run MLflow Project
               run: |
+                export MLFLOW_PYTHON_BIN=$(which python)
                 mlflow run MLProject --env-manager=virtualenv
 
             - name: set up git lfs

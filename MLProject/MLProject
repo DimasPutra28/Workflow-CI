@@ -1,6 +1,6 @@
 name: Student_Performance
 
-conda_env: conda.yaml
+image: python 3.12.4
 
 entry_points:
   main:

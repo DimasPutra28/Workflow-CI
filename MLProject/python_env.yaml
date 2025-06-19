@@ -1,0 +1,13 @@
+# python_env.yaml
+python: "3.12.4"
+
+# Optional: build dependencies
+build_dependencies:
+  - pip
+
+# Runtime dependencies
+dependencies:
+  - mlflow>=2.0.0
+  - scikit-learn==1.2.0
+  - pandas>=1.5.0
+  - numpy>=1.21.0

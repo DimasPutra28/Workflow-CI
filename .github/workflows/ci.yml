@@ -38,7 +38,7 @@ jobs:
               run: |
                 echo "Python path: $(which python)"
                 export MLFLOW_PYTHON_BIN=$(which python)
-                mlflow run . --env-manager=virtualenv
+                mlflow run ./modelling.py --env-manager=virtualenv
 
             - name: get latest mlflow run_id
               run: |

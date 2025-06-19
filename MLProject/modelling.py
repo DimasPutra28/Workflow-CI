@@ -3,42 +3,44 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import numpy as np
-from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, log_loss, matthews_corrcoef, balanced_accuracy_score
-)
+import sys
+import os
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+if __name__ == "__main__":
 
-mlflow.set_experiment("Student Performance")
+    np.random.seed(42)
 
-data = pd.read_csv("Student_performance_processed_data.csv")
+    # get file path from arguments
+    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "croprecommendation_preprocessing.csv")
+    data = pd.read_csv(file_path)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    data.drop("GradeClass", axis=1),
-    data["GradeClass"],
-    random_state=42,
-    test_size=0.2
-)
+    X_train, X_test, y_train, y_test = train_test_split(
+        data.drop("GradeClass", axis=1),
+        data["GradeClass"],
+        random_state=42,
+        test_size=0.2
+    )
 
-input_example = X_train[0:5]
-dataset = mlflow.data.from_pandas(data)
+    input_example = X_train[0:5]
+    dataset = mlflow.data.from_pandas(data)
 
-with mlflow.start_run():
+    n_estimators = int(sys.argv[1]) if len(sys.argv) > 1 else 100
 
-    mlflow.autolog()
+    with mlflow.start_run():
 
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+        mlflow.autolog()
 
-    model.fit(X_train, y_train)
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
 
-    mlflow.sklearn.log_model(
-            sk_model=model,
-            name="model",
-            input_example=input_example
-        )
+        model.fit(X_train, y_train)
 
-    accuracy = model.score(X_test, y_test)
+        mlflow.sklearn.log_model(
+                sk_model=model,
+                name="model",
+                input_example=input_example
+            )
 
-    # Log dataset
-    mlflow.log_input(dataset, context="training")
+        accuracy = model.score(X_test, y_test)
+
+        # Log dataset
+        mlflow.log_input(dataset, context="training")

@@ -1,45 +1,65 @@
-name: MLflow CI Workflow
+name: workflow-ci
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+
+env:
+    CSV_URL: "MLProject/Student_performance_processed_data.csv"
+    TARGET_VAR: "GradeClass"
 
 jobs:
-  train-model:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
+        steps:
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
-    - name: Set up Conda
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        python-version: 3.9
-        environment-file: MLProject/conda.yaml
-        activate-environment: student_performance_env
+            - name: Setup Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.12.9'
 
-    - name: Install MLflow
-      run: |
-        conda activate student_performance_env
-        pip install mlflow
+            - name: Check Env
+              run: |
+                echo $CSV_URL
+                echo $TARGET_VAR
 
-    - name: Start MLflow server
-      run: |
-        mlflow server --host 0.0.0.0 --port 5000 &
-        sleep 10  # Wait for server to start
+            - name: Install dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install mlflow
 
-    - name: Run MLflow project
-      env:
-        MLFLOW_TRACKING_URI: http://localhost:5000
-      run: |
-        conda activate student_performance_env
-        mlflow run MLProject -P MLFLOW_TRACKING_URI=$MLFLOW_TRACKING_URI
+            - name: Run as a MLflow
+              run: |
+                mlflow run MLproject --env-manager=local
 
-    - name: Upload MLflow artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: mlflow-artifacts
-        path: mlruns/
+            - name: set up git lfs
+              run: |
+                git config --global user.name "${{ secrets.USERNAME }}"
+                git config --global user.email "${{ secrets.EMAIL }}"
+                git lfs install
+                git lfs track "mlruns/**"
+                git add .gitattributes
+                git commit -m "Track large files in mlruns with Git LFS" || true
+                git push origin master
+
+            - name: save mlruns to repo
+              run: |
+                git config --global user.name "${{ secrets.USERNAME }}"
+                git config --global user.email "${{ secrets.EMAIL }}"
+                git add -f mlruns/
+                git commit -m "Save mlruns from CI run" || true
+                git push origin master
+
+            - name: get latest mlflow run_id
+              run: |
+                RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
+                echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
+                echo "Latest run_id: $RUN_ID"
+
+          

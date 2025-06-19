@@ -1,0 +1,10 @@
+name: Student_Performance
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 100}
+      dataset : {type: string, default: "Student_performance_processed_data.csv"}
+    command: "python modelling.py {n_estimators} {dataset}"

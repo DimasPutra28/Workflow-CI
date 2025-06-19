@@ -8,6 +8,8 @@ import os
 
 if __name__ == "__main__":
 
+    mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+
     np.random.seed(42)
 
     # get file path from arguments

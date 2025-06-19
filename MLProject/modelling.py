@@ -11,7 +11,7 @@ if __name__ == "__main__":
     np.random.seed(42)
 
     # get file path from arguments
-    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "croprecommendation_preprocessing.csv")
+    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "Student_performance_processed_data.csv")
     data = pd.read_csv(file_path)
 
     X_train, X_test, y_train, y_test = train_test_split(

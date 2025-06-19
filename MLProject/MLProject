@@ -1,7 +1,5 @@
 name: Student_Performance
 
-image: python 3.12.4
-
 entry_points:
   main:
     parameters:

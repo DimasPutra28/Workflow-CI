@@ -1,5 +1,5 @@
 # python_env.yaml
-python: "3.12.4"
+python: "3.12.9"
 
 # Optional: build dependencies
 build_dependencies:

@@ -22,7 +22,7 @@ jobs:
             - name: Setup Python
               uses: actions/setup-python@v4
               with:
-                python-version: '3.12.9'
+                python-version: '3.11.12'
 
             - name: Check Env
               run: |
@@ -34,9 +34,9 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install mlflow scikit-learn pandas numpy
 
-            - name: Run as a MLflow
+            - name: Run MLflow Project
               run: |
-                mlflow run MLProject --env-manager virtualenv
+                mlflow run MLProject --env-manager=virtualenv
 
             - name: set up git lfs
               run: |

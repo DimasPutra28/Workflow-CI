@@ -1,10 +1,7 @@
 name: Student_Performance
 
-python_env: python_env.yaml
-
 entry_points:
   main:
     parameters:
-      n_estimators: {type: int, default: 100}
-      dataset : {type: string, default: "Student_performance_processed_data.csv"}
-    command: "python modelling.py {n_estimators} {dataset}"
+      data_path: {type: str, default: "Student_performance_processed_data.csv"}
+    command: "python modelling.py --data_path {data_path}"

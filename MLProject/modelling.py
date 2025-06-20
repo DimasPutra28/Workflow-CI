@@ -8,24 +8,25 @@ from sklearn.metrics import (
     roc_auc_score, log_loss, matthews_corrcoef, balanced_accuracy_score
 )
 import argparse
+import joblib
+import os
 
-# Ambil data_path dari argumen
-parser = argparse.ArgumentParser()
-parser.add_argument('--data_path', type=str, default='Student_performance_processed_data.csv')
-args = parser.parse_args()
-
-data = pd.read_csv(args.data_path)
-
+# Set MLflow tracking
 mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+mlflow.set_experiment("Student Performance CI")
 
-mlflow.set_experiment("Student Performance")
+# Load data
+data = pd.read_csv("Student_performance_processed_data.csv")
+X = data.drop("GradeClass", axis=1)
+y = data["GradeClass"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    data.drop("GradeClass", axis=1),
-    data["GradeClass"],
-    random_state=42,
-    test_size=0.2
-)
+# X_train, X_test, y_train, y_test = train_test_split(
+#     data.drop("GradeClass", axis=1),
+#     data["GradeClass"],
+#     random_state=42,
+#     test_size=0.2
+# )
 
 input_example = X_train[0:5]
 dataset = mlflow.data.from_pandas(data)
@@ -39,12 +40,16 @@ with mlflow.start_run():
     model.fit(X_train, y_train)
 
     mlflow.sklearn.log_model(
-            sk_model=model,
-            name="model",
-            input_example=input_example
-        )
+        sk_model=model,
+        artifact_path="model",
+        input_example=input_example
+    )
 
     accuracy = model.score(X_test, y_test)
 
     # Log dataset
     mlflow.log_input(dataset, context="training")
+
+    # Save model locally
+    os.makedirs("artefak_model", exist_ok=True)
+    joblib.dump(model, "artefak_model/model.pkl")

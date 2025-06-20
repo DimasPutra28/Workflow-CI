@@ -1,7 +1,8 @@
-name: Student_Performance
+name: student_performance_ci
+
+python: python
 
 entry_points:
   main:
-    parameters:
-      data_path: {type: str, default: "Student_performance_processed_data.csv"}
-    command: "python modelling.py --data_path {data_path}"
+    parameters: {}
+    command: "python modelling.py"

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/817461413212702026/31ba2d23d5334bf7b72adeaa495c68ef/artifacts
+end_time: 1750392091129
+entry_point_name: ''
+experiment_id: '817461413212702026'
+lifecycle_stage: active
+run_id: 31ba2d23d5334bf7b72adeaa495c68ef
+run_name: nervous-shark-111
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750392091081
+status: 4
+tags: []
+user_id: VOKASI-UA

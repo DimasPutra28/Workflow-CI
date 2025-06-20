@@ -1,0 +1,17 @@
+digest: c63d01c6
+name: dataset
+profile: '{"num_rows": 5, "num_elements": 70}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "StudentID", "required": true},
+  {"type": "double", "name": "Age", "required": true}, {"type": "double", "name":
+  "Gender", "required": true}, {"type": "double", "name": "Ethnicity", "required":
+  true}, {"type": "double", "name": "ParentalEducation", "required": true}, {"type":
+  "double", "name": "StudyTimeWeekly", "required": true}, {"type": "double", "name":
+  "Absences", "required": true}, {"type": "double", "name": "Tutoring", "required":
+  true}, {"type": "double", "name": "ParentalSupport", "required": true}, {"type":
+  "double", "name": "Extracurricular", "required": true}, {"type": "double", "name":
+  "Sports", "required": true}, {"type": "double", "name": "Music", "required": true},
+  {"type": "double", "name": "Volunteering", "required": true}, {"type": "double",
+  "name": "GPA", "required": true}]}'
+source: '{"tags": {"mlflow.user": "VOKASI-UA", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "4bf1b77b3b9098ca92c0dec2d6e2d609f1a91e37"}}'
+source_type: code

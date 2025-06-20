@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/817461413212702026/de19589f34f1492eb2c9c1051bfe98e5/artifacts
+end_time: 1750392111032
+entry_point_name: ''
+experiment_id: '817461413212702026'
+lifecycle_stage: active
+run_id: de19589f34f1492eb2c9c1051bfe98e5
+run_name: fortunate-moose-969
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750392098014
+status: 3
+tags: []
+user_id: VOKASI-UA

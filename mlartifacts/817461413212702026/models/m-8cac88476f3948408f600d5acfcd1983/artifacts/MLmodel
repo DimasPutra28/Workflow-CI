@@ -1,0 +1,42 @@
+artifact_path: mlflow-artifacts:/817461413212702026/models/m-8cac88476f3948408f600d5acfcd1983/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.4
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.5.1
+is_signature_from_type_hint: false
+mlflow_version: 3.1.0
+model_id: m-8cac88476f3948408f600d5acfcd1983
+model_size_bytes: 5068955
+model_uuid: m-8cac88476f3948408f600d5acfcd1983
+prompts: null
+run_id: de19589f34f1492eb2c9c1051bfe98e5
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "StudentID", "required": true}, {"type": "double",
+    "name": "Age", "required": true}, {"type": "double", "name": "Gender", "required":
+    true}, {"type": "double", "name": "Ethnicity", "required": true}, {"type": "double",
+    "name": "ParentalEducation", "required": true}, {"type": "double", "name": "StudyTimeWeekly",
+    "required": true}, {"type": "double", "name": "Absences", "required": true}, {"type":
+    "double", "name": "Tutoring", "required": true}, {"type": "double", "name": "ParentalSupport",
+    "required": true}, {"type": "double", "name": "Extracurricular", "required": true},
+    {"type": "double", "name": "Sports", "required": true}, {"type": "double", "name":
+    "Music", "required": true}, {"type": "double", "name": "Volunteering", "required":
+    true}, {"type": "double", "name": "GPA", "required": true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-06-20 04:01:47.114083'

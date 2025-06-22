@@ -36,15 +36,16 @@ mlflow.autolog()
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
-mlflow.sklearn.log_model(
-    sk_model=model,
-    artifact_path="model",
-    input_example=input_example
-)
+# mlflow.sklearn.log_model(
+#     sk_model=model,
+#     artifact_path="model",
+#     input_example=input_example
+# )
 
 accuracy = model.score(X_test, y_test)
 
-mlflow.log_input(dataset, context="training")
+# mlflow.log_input(dataset, context="training")
 
-os.makedirs("artefak_model", exist_ok=True)
-joblib.dump(model, "artefak_model/model.pkl")
+output_path = os.path.join("artefak_model", "model.pkl")
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+joblib.dump(model, output_path)

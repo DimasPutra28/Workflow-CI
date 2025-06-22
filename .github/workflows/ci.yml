@@ -69,9 +69,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run training with MLflow Project (no venv)
+    - name: Run training with MLflow Project (force local env)
       run: |
-        mlflow run . --env-manager=local
+        export MLFLOW_ENV_MANAGER=local
+        python -m mlflow run .
 
     - name: Commit artefak
       run: |

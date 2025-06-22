@@ -1,6 +1,6 @@
 name: student_performance_ci
 
-python: python
+# python: python
 
 entry_points:
   main:

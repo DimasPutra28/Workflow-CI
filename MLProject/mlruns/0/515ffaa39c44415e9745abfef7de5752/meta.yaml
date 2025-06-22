@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/VOKASI-UA/MSML/Workflow-CI/MLProject/mlruns/0/515ffaa39c44415e9745abfef7de5752/artifacts
+end_time: 1750557293795
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 515ffaa39c44415e9745abfef7de5752
+run_name: capable-shark-721
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750557289464
+status: 4
+tags: []
+user_id: VOKASI-UA

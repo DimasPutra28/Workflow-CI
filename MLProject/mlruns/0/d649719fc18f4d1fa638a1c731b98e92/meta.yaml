@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/VOKASI-UA/MSML/Workflow-CI/MLProject/mlruns/0/d649719fc18f4d1fa638a1c731b98e92/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d649719fc18f4d1fa638a1c731b98e92
+run_name: melodic-snake-518
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750557277633
+status: 1
+tags: []
+user_id: VOKASI-UA

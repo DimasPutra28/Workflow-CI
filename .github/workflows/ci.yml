@@ -69,9 +69,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run training
+    - name: Run training with MLflow Project
       run: |
-        python modelling.py
+        mlflow run .
 
     - name: Commit artefak
       run: |

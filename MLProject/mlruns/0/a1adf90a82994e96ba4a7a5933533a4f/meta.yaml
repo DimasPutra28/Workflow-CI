@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/VOKASI-UA/MSML/Workflow-CI/MLProject/mlruns/0/a1adf90a82994e96ba4a7a5933533a4f/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a1adf90a82994e96ba4a7a5933533a4f
+run_name: whimsical-gnat-297
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750557416907
+status: 1
+tags: []
+user_id: VOKASI-UA

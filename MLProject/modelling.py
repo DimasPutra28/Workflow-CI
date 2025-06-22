@@ -31,25 +31,20 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 input_example = X_train[0:5]
 dataset = mlflow.data.from_pandas(data)
 
-with mlflow.start_run():
+mlflow.autolog()
 
-    mlflow.autolog()
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
 
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
+mlflow.sklearn.log_model(
+    sk_model=model,
+    artifact_path="model",
+    input_example=input_example
+)
 
-    model.fit(X_train, y_train)
+accuracy = model.score(X_test, y_test)
 
-    mlflow.sklearn.log_model(
-        sk_model=model,
-        artifact_path="model",
-        input_example=input_example
-    )
+mlflow.log_input(dataset, context="training")
 
-    accuracy = model.score(X_test, y_test)
-
-    # Log dataset
-    mlflow.log_input(dataset, context="training")
-
-    # Save model locally
-    os.makedirs("artefak_model", exist_ok=True)
-    joblib.dump(model, "artefak_model/model.pkl")
+os.makedirs("artefak_model", exist_ok=True)
+joblib.dump(model, "artefak_model/model.pkl")
